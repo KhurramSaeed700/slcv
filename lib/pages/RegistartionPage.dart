@@ -20,10 +20,10 @@ class RegistartionPage extends StatelessWidget {
                 fit: BoxFit.contain,
               ),
               Card(
-                margin: const EdgeInsets.fromLTRB(250,10,250,10),
+                margin: const EdgeInsets.all(23),
                 shadowColor: const Color(0xFF2195F2),
                 child: Padding(
-                  padding: const EdgeInsets.all(100.0),
+                  padding: const EdgeInsets.all(50),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
