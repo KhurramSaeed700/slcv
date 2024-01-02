@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'LoginPage.dart';
+
 class AdminPage extends StatelessWidget {
   const AdminPage({super.key});
 
@@ -11,7 +13,13 @@ class AdminPage extends StatelessWidget {
         backgroundColor: Colors.blue[500],
         elevation: 23,
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.logout)),
+          IconButton(onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const LoginPage(),
+              ),
+            );
+          }, icon: const Icon(Icons.logout)),
         ],
       ),
       drawer: Drawer(
