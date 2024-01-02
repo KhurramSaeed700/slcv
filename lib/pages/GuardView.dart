@@ -4,64 +4,17 @@ import 'package:flutter/material.dart';
 import 'LoginPage.dart';
 import 'CameraColumn.dart'; // Import the CameraColumn widget
 
-class AdminPage extends StatelessWidget {
-  const AdminPage({Key? key});
+class GuardView extends StatelessWidget {
+  const GuardView ({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Admin Dashboard"),
+        title: const Text("Guard Dashboard"),
         backgroundColor: Colors.blue[500],
         elevation: 23,
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const LoginPage(),
-                ),
-              );
-            },
-            icon: const Icon(Icons.logout),
-          ),
-        ],
-      ),
-      drawer: Drawer(
-        backgroundColor: Colors.white,
-        child: Column(
-          children: [
-            Image.asset('lib/assets/main-logo.png'),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Search',
-                  prefixIcon: Icon(Icons.search),
-                ),
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Search by Image',
-                  suffixIcon: Icon(Icons.camera_alt_outlined),
-                ),
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Add camera',
-                  suffixIcon: Icon(Icons.add_a_photo_outlined),
-                ),
-              ),
-            ),
-          ],
-        ),
+      
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
