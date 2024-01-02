@@ -1,7 +1,4 @@
-// AdminPage.dart
-
 import 'package:flutter/material.dart';
-import 'LoginPage.dart';
 import 'CameraColumn.dart'; // Import the CameraColumn widget
 
 class GuardView extends StatelessWidget {

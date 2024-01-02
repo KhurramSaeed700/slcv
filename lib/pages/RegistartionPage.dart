@@ -1,13 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:slcv/pages/LoginPage.dart';
 
-class RegistartionPage extends StatelessWidget {
-  const RegistartionPage ({super.key});
+class RegistrationPage extends StatefulWidget {
+  const RegistrationPage({Key? key}) : super(key: key);
+
+  @override
+  _RegistrationPageState createState() => _RegistrationPageState();
+}
+
+class _RegistrationPageState extends State<RegistrationPage> {
+  // TextEditingController to get the entered email, username, and passwords
+  TextEditingController emailController = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
+
+  // Variables to track password visibility
+  bool isPasswordVisible = false;
+  bool isConfirmPasswordVisible = false;
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-
+    return Scaffold(
       body: SingleChildScrollView(
         child: Center(
           child: Column(
@@ -28,7 +42,7 @@ class RegistartionPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const Text(
-                        'Registartion',
+                        'Registration',
                         style: TextStyle(
                           color: Colors.blue,
                           fontSize: 36,
@@ -36,52 +50,82 @@ class RegistartionPage extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 40),
-                      const TextField(
-                        decoration: InputDecoration(
+                      TextField(
+                        controller: emailController,
+                        decoration: const InputDecoration(
                           hintText: 'Email',
                           prefixIcon: Icon(Icons.mail),
                         ),
-                        style: TextStyle(color: Colors.blue),
+                        style: const TextStyle(color: Colors.blue),
                         keyboardType: TextInputType.text,
                       ),
                       const SizedBox(height: 20),
-                      const TextField(
-                        decoration: InputDecoration(
+                      TextField(
+                        controller: usernameController,
+                        decoration: const InputDecoration(
                           hintText: 'Username',
                           prefixIcon: Icon(Icons.person),
                         ),
-                        style: TextStyle(color: Colors.blue),
+                        style: const TextStyle(color: Colors.blue),
                         keyboardType: TextInputType.text,
                       ),
                       const SizedBox(height: 20),
-                      const TextField(
+                      TextField(
+                        controller: passwordController,
                         decoration: InputDecoration(
                           hintText: 'Password',
-                          prefixIcon: Icon(Icons.lock),
-                          suffixIcon: Icon(Icons.visibility),
+                          prefixIcon: const Icon(Icons.lock),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              isPasswordVisible
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                            ),
+                            onPressed: () {
+                              // Toggle password visibility
+                              setState(() {
+                                isPasswordVisible = !isPasswordVisible;
+                              });
+                            },
+                          ),
                         ),
-                        style: TextStyle(color: Colors.blue),
+                        style: const TextStyle(color: Colors.blue),
                         keyboardType: TextInputType.text,
-                        obscureText: true,
+                        obscureText: !isPasswordVisible,
                       ),
                       const SizedBox(height: 30),
-                      const TextField(
+                      TextField(
+                        controller: confirmPasswordController,
                         decoration: InputDecoration(
                           hintText: 'Confirm Password',
-                          prefixIcon: Icon(Icons.lock),
-                          suffixIcon: Icon(Icons.visibility),
+                          prefixIcon: const Icon(Icons.lock),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              isConfirmPasswordVisible
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                            ),
+                            onPressed: () {
+                              // Toggle confirm password visibility
+                              setState(() {
+                                isConfirmPasswordVisible =
+                                    !isConfirmPasswordVisible;
+                              });
+                            },
+                          ),
                         ),
-                        style: TextStyle(color: Colors.blue),
+                        style: const TextStyle(color: Colors.blue),
                         keyboardType: TextInputType.text,
-                        obscureText: true,
+                        obscureText: !isConfirmPasswordVisible,
                       ),
                       const SizedBox(height: 30),
                       ElevatedButton(
                         onPressed: () {
-                          // Add login functionality here
+                          // Add registration functionality here
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => const LoginPage(),
+                            MaterialPageRoute(
+                              builder: (context) => const LoginPage(),
                             ),
                           );
                         },
@@ -103,5 +147,4 @@ class RegistartionPage extends StatelessWidget {
       ),
     );
   }
-
 }

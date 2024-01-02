@@ -3,15 +3,23 @@ import 'package:slcv/pages/AdminPage.dart';
 import 'RegistartionPage.dart';
 import 'GuardView.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key});
 
   @override
-  Widget build(BuildContext context) {
-    // TextEditingController to get the entered username and password
-    TextEditingController usernameController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
+  _LoginPageState createState() => _LoginPageState();
+}
 
+class _LoginPageState extends State<LoginPage> {
+  // TextEditingController to get the entered username and password
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  // Variable to track password visibility
+  bool isPasswordVisible = false;
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Center(
@@ -53,14 +61,26 @@ class LoginPage extends StatelessWidget {
                       const SizedBox(height: 20),
                       TextField(
                         controller: passwordController,
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                           hintText: 'Password',
-                          prefixIcon: Icon(Icons.lock),
-                          suffixIcon: Icon(Icons.visibility),
+                          prefixIcon: const Icon(Icons.lock),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              isPasswordVisible
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                            ),
+                            onPressed: () {
+                              // Toggle password visibility
+                              setState(() {
+                                isPasswordVisible = !isPasswordVisible;
+                              });
+                            },
+                          ),
                         ),
                         style: const TextStyle(color: Colors.blue),
                         keyboardType: TextInputType.text,
-                        obscureText: true,
+                        obscureText: !isPasswordVisible,
                       ),
                       const SizedBox(height: 30),
                       ElevatedButton(
@@ -101,7 +121,7 @@ class LoginPage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const RegistartionPage(),
+                      builder: (context) => const RegistrationPage(),
                     ),
                   );
                 },
