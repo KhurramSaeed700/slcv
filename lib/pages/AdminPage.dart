@@ -1,8 +1,5 @@
-// AdminPage.dart
-
 import 'package:flutter/material.dart';
 import 'LoginPage.dart';
-import 'CameraColumn.dart'; // Import the CameraColumn widget
 
 class AdminPage extends StatelessWidget {
   const AdminPage({Key? key});
@@ -77,7 +74,21 @@ class AdminPage extends StatelessWidget {
                 elevation: 4,
                 child: const Padding(
                   padding: EdgeInsets.all(16.0),
-                  child: CameraColumn(), // Use the CameraColumn widget here
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Cameras',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 16),
+                      // List of Camera Containers goes here
+                      // You can dynamically add new containers in this area
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -104,47 +115,56 @@ class AdminPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
                       // Content for the top 80% goes here
+
+                      // Spacer to push the Authorized/Unauthorized to the bottom
                       const Spacer(),
-                      Row(
-                        children: [
-                          const Text(
-                            'Authorized ',
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
+
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Row(
+                          children: [
+                            const Text(
+                              'Authorized ',
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                          const SizedBox(width: 4),
-                          Container(
-                            width: 10,
-                            height: 5,
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.green,
+                            const SizedBox(width: 4),
+                            Container(
+                              width: 10,
+                              height: 5,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.green,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                       const SizedBox(height: 14),
-                      Row(
-                        children: [
-                          const Text(
-                            'Unauthorized ',
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Row(
+                          children: [
+                            const Text(
+                              'Unauthorized ',
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                          const SizedBox(width: 4),
-                          Container(
-                            width: 10,
-                            height: 5,
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.red,
+                            const SizedBox(width: 4),
+                            Container(
+                              width: 10,
+                              height: 5,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.red,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ],
                   ),
